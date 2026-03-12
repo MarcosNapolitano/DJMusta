@@ -16,9 +16,12 @@ export async function DiscordRequest(endpoint, options) {
   });
   // throw API errors
   if (!res.ok) {
-    const data = await res.json();
-    console.log(res.status);
-    throw new Error(JSON.stringify(data));
+    const text = await res.text();
+    // const data = await res.json();
+    console.log("status:", res.status);
+    console.log("Respuesta:", text);
+    // throw new Error(JSON.stringify(data));
+    throw new Error(text);
   }
   // return original response
   return res;
