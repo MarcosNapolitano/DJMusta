@@ -1,4 +1,4 @@
-import { getRandomEmoji, DiscordRequest } from './utils.js';
+import { getRandomEmoji, DiscordRequest, getRandomSong, getRandomMusta, getRandomWine } from './utils.js';
 import 'dotenv/config';
 import express from 'express';
 import {
@@ -9,23 +9,21 @@ import {
   MessageComponentTypes,
   verifyKeyMiddleware,
 } from 'discord-interactions';
-// import { getShuffledOptions, getResult } from './game.js';
 
 // Create an express app
 const app = express();
 // Get port, or default to 3000
 const PORT = process.env['PORT'] || 3000;
-// To keep track of our active games
-const activeGames = {};
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  * Parse request body and verifies incoming requests using discord-interactions package
  */
-app.post('/interactions', verifyKeyMiddleware(process.env['PUBLIC_KEY'] as string), async function (req, res) {
+app.post('/interactions', verifyKeyMiddleware(process.env['PUBLIC_KEY'] as string), async function(req, res) {
   // Interaction id, type and data
   const { id, type, data } = req.body;
-  console.log(data)
+
+  const user: string = req.body.member.user.username;
 
   /**
    * Handle verification requests
@@ -41,9 +39,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env['PUBLIC_KEY'] as strin
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name } = data;
 
-    // "test" command
-    if (name === 'test') {
-      // Send a message into the channel where command was triggered from
+    if (name === 'salud') {
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
@@ -51,8 +47,56 @@ app.post('/interactions', verifyKeyMiddleware(process.env['PUBLIC_KEY'] as strin
           components: [
             {
               type: MessageComponentTypes.TEXT_DISPLAY,
-              // Fetches a random emoji to send from a helper function
-              content: `hello world ${getRandomEmoji()}`
+              content: `${getRandomEmoji()} Salud ${user}!!!`
+            }
+          ]
+        },
+      });
+    }
+
+    if (name === 'cumbia') {
+
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: `🎵 Hoy se escucha:\n${getRandomSong()}`
+        },
+      });
+    }
+
+    if (name === 'miau') {
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: '### MIAU'
+            },
+            {
+              type: MessageComponentTypes.MEDIA_GALLERY,
+              items: [{ media: { url: getRandomMusta() } }]
+            }
+          ]
+        },
+      });
+    }
+
+    if (name === 'vino') {
+      const [vino, url] = getRandomWine() as string[];
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: `🍷 Hoy se toma:\n**${vino}**`
+            },
+            {
+              type: MessageComponentTypes.MEDIA_GALLERY,
+              items: [{ media: { url: url } }]
             }
           ]
         },

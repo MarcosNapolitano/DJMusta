@@ -1,49 +1,38 @@
 import 'dotenv/config';
-import { getRPSChoices } from './game.js';
-import { capitalize, InstallGlobalCommands } from './utils.js';
+import { InstallGlobalCommands } from './utils.js';
 
-// Get the game choices from game.js
-function createCommandChoices() {
-  const choices = getRPSChoices();
-  const commandChoices = [];
-
-  for (let choice of choices) {
-    commandChoices.push({
-      name: capitalize(choice),
-      value: choice.toLowerCase(),
-    });
-  }
-
-  return commandChoices;
-}
-
-// Simple test command
-const TEST_COMMAND = {
-  name: 'test',
-  description: 'Basic command',
+const MIAU_COMMAND = {
+  name: 'miau',
+  description: 'Decime Miau y Tomo!',
   type: 1,
-  integration_types: [0, 1],
-  contexts: [0, 1, 2],
+  integration_types: [0],
+  contexts: [0],
 };
 
-// Command containing options
-const CHALLENGE_COMMAND = {
-  name: 'challenge',
-  description: 'Challenge to a match of rock paper scissors',
-  options: [
-    {
-      type: 3,
-      name: 'object',
-      description: 'Pick your object',
-      required: true,
-      choices: createCommandChoices(),
-    },
-  ],
+const SALUD_COMMAND = {
+  name: 'salud',
+  description: 'Salud!!!',
   type: 1,
-  integration_types: [0, 1],
-  contexts: [0, 2],
+  integration_types: [0],
+  contexts: [0],
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND];
+const CUMBIA_COMMAND = {
+  name: 'cumbia',
+  description: 'Qué tema querés escuchar hoy?',
+  type: 1,
+  integration_types: [0],
+  contexts: [0],
+};
+
+const VINO_COMMAND = {
+  name: 'vino',
+  description: 'Qué eskabiamos hoy?',
+  type: 1,
+  integration_types: [0],
+  contexts: [0],
+};
+
+const ALL_COMMANDS = [MIAU_COMMAND, SALUD_COMMAND, CUMBIA_COMMAND, VINO_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

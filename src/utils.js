@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { MUSTA_PICS, WINE_PICS, SONGS } from './ddbb.js';
 
 export async function DiscordRequest(endpoint, options) {
   // append endpoint to root API URL
@@ -16,12 +17,12 @@ export async function DiscordRequest(endpoint, options) {
   });
   // throw API errors
   if (!res.ok) {
-    const text = await res.text();
-    // const data = await res.json();
+    // const text = await res.text();
+    const data = await res.json();
     console.log("status:", res.status);
-    console.log("Respuesta:", text);
-    // throw new Error(JSON.stringify(data));
-    throw new Error(text);
+    // console.log("Respuesta:", text);
+    throw new Error(JSON.stringify(data));
+    // throw new Error(text);
   }
   // return original response
   return res;
@@ -41,8 +42,21 @@ export async function InstallGlobalCommands(appId, commands) {
 
 // Simple method that returns a random emoji from list
 export function getRandomEmoji() {
-  const emojiList = ['😭','😄','😌','🤓','😎','😤','🤖','😶‍🌫️','🌏','📸','💿','👋','🌊','✨'];
+  const emojiList = ['🍺','😎','😤','🍻','🧉','🍹','🍷','🥃','🍸','🍶','🍾','🥂','✨'];
   return emojiList[Math.floor(Math.random() * emojiList.length)];
+}
+
+export function getRandomSong() {
+  const INDEX = Math.floor(Math.random() * SONGS.length);
+  return `**${SONGS[INDEX][0]}**\n${SONGS[INDEX][1]}`;
+}
+
+export function getRandomWine() {
+  return WINE_PICS[Math.floor(Math.random() * WINE_PICS.length)]
+}
+
+export function getRandomMusta() {
+  return MUSTA_PICS[Math.floor(Math.random() * MUSTA_PICS.length)]
 }
 
 export function capitalize(str) {
