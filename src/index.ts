@@ -1,8 +1,7 @@
-import { getRandomEmoji, DiscordRequest, getRandomSong, getRandomMusta, getRandomWine } from './utils.js';
+import { getRandomEmoji, getRandomSong, getRandomMusta, getRandomWine } from './utils.js';
 import 'dotenv/config';
 import express from 'express';
 import {
-  ButtonStyleTypes,
   InteractionResponseFlags,
   InteractionResponseType,
   InteractionType,
@@ -21,7 +20,7 @@ const PORT = process.env['PORT'] || 3000;
  */
 app.post('/interactions', verifyKeyMiddleware(process.env['PUBLIC_KEY'] as string), async function(req, res) {
   // Interaction id, type and data
-  const { id, type, data } = req.body;
+  const { type, data } = req.body;
 
   const user: string = req.body.member.user.username;
 
