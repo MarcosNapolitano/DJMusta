@@ -27,7 +27,12 @@ export const MUSTA_PICS = [
   'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/4721129d-b227-4193-51ab-9e6e50ee9f00/public',
   'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/5c8c61f6-d99f-4e7d-d431-09e136211200/public',
   'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/26b04456-ee4d-4c0b-e2ac-4e78437ba700/public',
-  'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/b4801ac9-e472-4556-d055-c48b68ff5200/public'
+  'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/b4801ac9-e472-4556-d055-c48b68ff5200/public',
+  'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/3c676873-f524-4459-84ab-322d29a53200/public',
+  'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/e1d4dba5-5d97-4884-7fbd-ccf3c1fe0700/public',
+  'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/e127cd06-f322-480f-4ab4-8a1261e12400/public',
+  'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/fa3ac528-022f-4eb1-dbbd-081df87def00/public',
+  'https://imagedelivery.net/q3Ol_DkTT2SPygD5APn59Q/5ef18955-631c-48cb-b8fd-1e1240a2c700/public'
 
 ]
 
